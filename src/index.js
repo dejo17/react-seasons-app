@@ -5,7 +5,7 @@ import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
 
-	state = { lat: null, errorMessage: '' } 
+	state = { lat: null, errorMessage: '' }; 
 	//This is kind of initialization is enabled by Babel, it creates constructor and initializes state for us
 
 	componentDidMount() {
