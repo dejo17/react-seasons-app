@@ -1,6 +1,18 @@
 import React from 'react';
 
-const getSeason = (lat, month) =>{
+const seasonConfig = {
+//this will be configuration object to replace awkward multiple ternary expressions	
+	summer:{
+		text: "Let's hit the beach!",
+		iconName: 'sun'
+	},
+	winter:{
+		text: "Brr, it is chilly",
+		iconName: 'snowflake'
+	}
+};
+
+const getSeason = (lat, month) => {
 	if (month > 2 && month < 9) {
 		return lat > 0 ? 'summer' : 'winter';
 	} else {
@@ -10,9 +22,16 @@ const getSeason = (lat, month) =>{
 
 
 const SeasonDisplay = props => {
-	
+
 	const season = getSeason(props.lat, new Date().getMonth());
-	console.log(season);
-	return <div>Latitude is: {props.lat}</div>;
+	//seasonConfig[season]; vraca objekt u obliku {text, iconName}, da bi izvukli vrijednosti van pisemo:
+	const {text, iconName} = seasonConfig[season];
+	return (
+		<div>
+			<i className={`massive ${iconName} icon`} />
+			<h1>{text}</h1>
+			<i className={`massive ${iconName} icon`} />
+		</div>
+	);
 }
 export default SeasonDisplay;
