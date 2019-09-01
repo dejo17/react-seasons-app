@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner'
 
 
 class App extends React.Component {
@@ -29,7 +30,7 @@ class App extends React.Component {
 		}
 
 		//If we didnt return from previous two conditions, it means we are still loading
-		return <div>Loading geolocation...</div >;
+		return <Spinner text ="Please allow us to find your location"/>;
 
 	}
 }
