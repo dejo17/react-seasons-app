@@ -2,38 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 
-
 class App extends React.Component {
 
-	state = { lat: null, errorMessage: '' } 
-	//This is kind of initialization is enabled by Babel, it creates constructor and initializes state for us
+	state = { lat: null, errorMessage: '' };
 
 	componentDidMount() {
-		//method has two arguments, arg1 is mandatory callback if success, arg2 is optional callback if failure
+
 		window.navigator.geolocation.getCurrentPosition(
-			position => this.setState({ lat: position.coords.latitude }),  //we must call setState() to set state, not use nay other way
-			err => this.setState({ errorMessage: err.message })
+			position => { this.setState({ lat: position.coords.latitude }) },
+			err => {this.setState({errorMessage:err.message})}
 		);
 	}
-	componentDidUpdate() {
-		console.log('Component updated!');
-	}
 
-	//React forces us to have method render
 	render() {
-		if (this.state.errorMessage && !this.state.lat) {
-			return <div>Error: {this.state.errorMessage}</div >;
-		}
-		if (!this.state.errorMessage && this.state.lat) {
-			return <SeasonDisplay lat = {this.state.lat}/>;
-		}
 
-		//If we didnt return from previous two conditions, it means we are still loading
-		return <div>Loading geolocation...</div >;
+		return <SeasonDisplay lat={this.state.lat} err={this.state.errorMessage}/>
 
 	}
+
 }
 
-ReactDOM.render(
-	<App />, document.querySelector('#root')
-);
+ReactDOM.render(<App />, document.querySelector('#root'));
