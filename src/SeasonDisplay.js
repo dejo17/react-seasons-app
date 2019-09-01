@@ -1,8 +1,8 @@
 import React from 'react';
 
 class SeasonDisplay extends React.Component{
-	render(props){
-		return <div>Latitude is: {props.lat}</div>;
+	render(){
+		return <div>Latitude is: {this.props.lat}</div>;
 	}
 }
 export default SeasonDisplay;
